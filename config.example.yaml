@@ -1,7 +1,8 @@
+# Using Phabricator Conduit API
 searchParams:
     limit: 2
     #after: 1234
-    constraints[projects][0]: hsh
+    constraints[projects][0]: example
     constraints[statuses][0]: open
 
 defaultLabelsToAdd: {
@@ -20,10 +21,13 @@ defaultLabelsToAdd: {
 
 defaultBoardName: Development
 
+# <Phabricator> : <Gitlab>
 projectMap:
     12: 23
 
+# <Phabricator> : <Gitlab>
 repoMap:
-    HSHBASE: hsh/website
+    EXAMPLE: namespace/example
 
-nodeHtmlMarkdownOption: {}
+# See https://www.npmjs.com/package/node-html-markdown
+nodeHtmlMarkdownOptions: {}

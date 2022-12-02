@@ -1,20 +1,17 @@
 #!/usr/bin/env ts-node-esm
 import * as dotenv from "dotenv";
 import YAML from "yaml";
+import { readFile } from "node:fs/promises";
 
 import { phInit, phSearchTasks } from "./lib/phabricator-api.js";
 
 import { glInit } from "./lib/gitlab-api.js";
-import { readFile } from "fs/promises";
 import { endDb, initDb } from "./lib/phabricator-db.js";
 import { addLabelsToProjects } from "./tasks/add-labels-to-projects.js";
 import { addIssueBoardLists } from "./tasks/add-issue-board-lists.js";
 import { migrateIssue } from "./tasks/migrate-issue.js";
 
 dotenv.config();
-
-phInit(process.env.PH_API_URL, process.env.PH_TOKEN);
-glInit(process.env.GL_API_URL, process.env.GL_TOKEN);
 
 const configSettings = YAML.parse(
   await readFile(process.env.CONFIG_FILE || "./config.yaml", {
@@ -31,7 +28,7 @@ const defaultConfig = {
   projectMap: {},
   repoMap: {},
   defaultLabelsToAdd: {},
-  nodeHtmlMarkdownOption: {},
+  nodeHtmlMarkdownOptions: {},
 };
 
 const config = {
@@ -39,11 +36,13 @@ const config = {
   ...configSettings,
 };
 
-// <Fabrik> : <Gitlab>
 const projectMap = new Map<number, number>();
 Object.keys(config.projectMap).forEach((key) => {
   projectMap.set(Number(key), Number(config.projectMap[key]));
 });
+
+phInit(process.env.PH_API_URL, process.env.PH_TOKEN);
+glInit(process.env.GL_API_URL, process.env.GL_TOKEN);
 
 await initDb();
 endDb();

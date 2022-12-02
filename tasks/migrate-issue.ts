@@ -38,7 +38,7 @@ export async function migrateIssue(
 ) {
   const createdIssues = {};
 
-  const nhm = new NodeHtmlMarkdown(config.nodeHtmlMarkdownOption);
+  const nhm = new NodeHtmlMarkdown(config.nodeHtmlMarkdownOptions);
   const repoMap = new Map<string, string>();
   Object.keys(config.repoMap).forEach((key) => {
     repoMap.set(key, config.repoMap[key]);
