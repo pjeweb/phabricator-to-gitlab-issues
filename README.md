@@ -2,25 +2,36 @@
 
 Uses Phabricator MySQL and Conduit API to export and Gitlab REST API to import.
 
-Currently supports:
-- issues
-- labels (for priority, close reason and board names)
-- boards
-- attachments
+## Project info
+
+### Currently, supporting:
+
+- migrating tasks to issues
+- migrating labels for task priority, close reason and board names
+- migrating boards
+- migrating task attachments
 - map projects manually (config.yaml)
 - map phabricator repos to gitlab projects manually (config.yaml)
 
-TODO:
-- Support for comments
+### TODO:
+
+- Support for task comments
 - Resolve references to tasks and task comments (This will probably need a second run to figure out the new Gitlab issue ids)
 - Typescript usage is currently pretty minimal (horrible)
 
-## Prep
+### Out of Scope:
+- Support Gitlab Premium features
+- Migrate anything other than listed above
+
+## Getting started
+
+### Prep
 
 - Make sure Phabricator MySQL is accessible.
 - Create API token in Phabricator and Gitlab.
+- You may like to disable email notifications for the target Gitlab project.
 
-## Run
+### Run
 
 - Requires `node` v18 and `pnpm`.
 - Install deps using `pnpm install`.

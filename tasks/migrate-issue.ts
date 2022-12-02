@@ -1,16 +1,17 @@
+import { lookup as lookupMimeType } from "mime-types";
+import { NodeHtmlMarkdown } from "node-html-markdown";
+
 import { phProjects, phUsers } from "../lib/phabricator-db.js";
 import {
   phDownloadFile,
   phIdLookup,
   phRemarkupToHtml,
 } from "../lib/phabricator-api.js";
-import { lookup as lookupMimeType } from "mime-types";
 import {
   glCreateComment,
   glCreateIssue,
   glUploadFile,
 } from "../lib/gitlab-api.js";
-import { NodeHtmlMarkdown } from "node-html-markdown";
 
 export async function migrateIssue(
   config,
@@ -279,8 +280,8 @@ export async function migrateIssue(
   });
 
   /*
-							/relate #issue1 #issue2
-							 */
+							  /relate #issue1 #issue2
+							   */
 
   console.log(glTitle, status);
 
