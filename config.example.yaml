@@ -1,0 +1,29 @@
+searchParams:
+    limit: 2
+    #after: 1234
+    constraints[projects][0]: hsh
+    constraints[statuses][0]: open
+
+defaultLabelsToAdd: {
+  # Prio
+  Unbreak_Now: { description: "Unbreak_Now", color: "#dc32c6", priority: 0 },
+  High: { description: "High", color: "#ba392e", priority: 50 },
+  Normal: { description: "Normal", color: "#de7b25", priority: 100 },
+  Low: { description: "Low", color: "#e8bd18", priority: 150 },
+  Wishlist: { description: "Wishlist", color: "#3693d4", priority: 200 },
+  # Close reasons
+  Resolved: { description: "Resolved", color: "#199143" },
+  Wontfix: { description: "Wontfix", color: "#dde0ea" },
+  Invalid: { description: "Invalid", color: "#dde0ea" },
+  Duplicate: { description: "Duplicate", color: "#dde0ea" },
+}
+
+defaultBoardName: Development
+
+projectMap:
+    12: 23
+
+repoMap:
+    HSHBASE: hsh/website
+
+nodeHtmlMarkdownOption: {}
